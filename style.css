@@ -1,0 +1,16 @@
+#todoListBorder {
+  border: solid black 2px;
+  text-align: center;
+  width: 300px;
+}
+
+#title {
+  color: darkblue;
+}
+#itemsList {
+  text-align: left;
+}
+
+.done {
+  text-decoration-line: line-through;
+}
