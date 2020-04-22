@@ -1,45 +1,53 @@
+// Task: Create a todo list
+
+// These references to HTML elements to be used in js functions
 const addButton = document.getElementById("addButton");
 const input = document.getElementById("input");
-const ul = document.querySelector("ul");
+const ul = document.getElementById("itemsList"); 
+const listItems = document.getElementById("itemsList").children;
 
 
-/*
-var itemText = document.createTextNode(listInput.value); // creates text for the list element
-li.appendChild(itemText); // adds text to the list element 
---
-the above equals the same as li.appendChild(document.createTextNode(listInput.value));
-*/
+// function that checks the length of input and returns it
+function inputValueLength() {
+  if (input.value.length > 0) {
+    return input.value.length;
+  }
+};
 
-
-function inputLength() { // this function checks for the length of the input value
-  return input.value.length; 
+// function to toggle "done" class 
+function toggleTodoEvent(event){
+  event.target.classList.toggle("done");
 }
 
+// function to create the new todo (list item/element)
 function createListElement() {
-  var li = document.createElement("li"); // creating the list element
+  const li = document.createElement("li");
   li.appendChild(document.createTextNode(input.value));
-  ul.appendChild(li); // adding the list element to the ul
-  input.value = ""; // clears the input box (to an empty string)
-}
+  li.addEventListener("click", toggleTodoEvent);
+  ul.appendChild(li);
+  input.value = "";
+};
 
-function addListAfterClick() {
-  if (inputLength() > 0) {
+
+// create a list element upon "addbutton" click
+addButton.addEventListener("click", function() {
+  if (inputValueLength() > 0) {
     createListElement();
   }
-}
+});
 
-function addListAfterKeypress(event) {
-  if (inputLength() > 0 && event.which === 13) {
-     createListElement();
+
+// create a list element upon "enter" keypress
+input.addEventListener("keyup", function(event) {
+  if (inputValueLength() > 0 && event.which == 13) {
+    createListElement();
   }
-}
-
-addButton.addEventListener("click", addListAfterClick); // addButton adds an item to the current todo list when clicked
-
-input.addEventListener("keypress", addListAfterKeypress); // addButton adds an item to the current todo list when enter is pressed
+}); 
 
 
-// Goal: Mark a line through list item that is clicked on 
-// Get a reference to the li that is clicked on 
-var itemDone = document.getElementsByTagName("li");
-//
+// Function that loops through the list of the todo items
+// upon click toggles the "done" class marking the todo as complete
+// "[...listItems]" is an array (no longer anot nodeList)
+[...listItems].forEach(function (element) {
+  element.addEventListener("click", toggleTodoEvent);
+});
