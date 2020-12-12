@@ -1,12 +1,17 @@
 #todoListBorder {
   border: solid black 2px;
   text-align: center;
-  width: 300px;
+  width: 400px;
+  padding-left: 20px;
 }
 
 #title {
   color: darkblue;
 }
+#input {
+ align-items: flex-end;
+}
+
 #itemsList {
   text-align: left;
 }

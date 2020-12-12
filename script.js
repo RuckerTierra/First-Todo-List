@@ -1,4 +1,10 @@
-// Task: Create a todo list
+// Project: Create a todo list
+// Step 1: Create variables to store elements 
+// Step 2: Create a function that checks length of input
+// Step 3: Create a function that creates a new todo
+// Step 4: Create a function that to mark todo as complete/finished
+// Step 5: Create a function to remove a completed/finshed todo
+
 
 // These references to HTML elements to be used in js functions
 const addButton = document.getElementById("addButton");
@@ -26,8 +32,9 @@ function createListElement() {
   li.addEventListener("click", toggleTodoEvent);
   ul.appendChild(li);
   input.value = "";
-};
 
+ 
+};
 
 // create a list element upon "addbutton" click
 addButton.addEventListener("click", function() {
@@ -36,7 +43,6 @@ addButton.addEventListener("click", function() {
   }
 });
 
-
 // create a list element upon "enter" keypress
 input.addEventListener("keyup", function(event) {
   if (inputValueLength() > 0 && event.which == 13) {
@@ -44,10 +50,9 @@ input.addEventListener("keyup", function(event) {
   }
 }); 
 
-
 // Function that loops through the list of the todo items
 // upon click toggles the "done" class marking the todo as complete
-// "[...listItems]" is an array (no longer anot nodeList)
+// "[...listItems]" is an array (no longer a nodeList)
 [...listItems].forEach(function (element) {
   element.addEventListener("click", toggleTodoEvent);
 });
